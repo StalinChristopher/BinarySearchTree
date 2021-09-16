@@ -75,5 +75,38 @@ public class MyBinarySearchTree<K extends Comparable<K>> {
     private int getSizeRecursive(MyBinaryNode<K> curr) {
 		return curr == null ? 0 : 1+getSizeRecursive(curr.left)+getSizeRecursive(curr.right);
 	}
+
+    
+    /** 
+     * @param key
+     * This method is called in the main class. It checks if the given key/element is present in the binarySearchTree or not
+     */
+    public void search(K key){
+        this.searchRecursive(key,root);
+    }
+
+
+
+    
+    /** 
+     * @param key
+     * @param current
+     * This method is called recursively until the element is found, it traverses left if key is smaller than parent,
+     * and traverses right if it is greater than parent
+     */
+    private void searchRecursive(K key, MyBinaryNode<K> current) {
+        if(current == null){
+            System.out.println("Element is not present in the binary search tree");
+            return;
+        }
+        int value = key.compareTo(current.getKey());
+        if(value == 0){
+            System.out.println("Element "+key+ " is found");
+        }else if(value < 0){
+            searchRecursive(key, current.left);
+        }else{
+            searchRecursive(key, current.right);
+        }
+    }
     
 }
